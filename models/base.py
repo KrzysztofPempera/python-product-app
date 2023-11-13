@@ -1,7 +1,8 @@
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Column as BaseColumn
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 class Column(BaseColumn):
     def __init__(self, *args, **kwargs):

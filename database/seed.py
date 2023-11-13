@@ -15,9 +15,9 @@ def seed_database():
     session = Session()
 
     try:
-        pc = PcProduct(marker='M1', type='pc', code=1, model='model1', speed=2000, ram=8, hd=512, cd='DVD', price=899.99)
-        laptop = LaptopProduct(marker='M2', type='laptop',code=2, model='model2', speed=2500, ram=16, hd=1024, price=1299.99, screen=15)
-        printer = PrinterProduct(marker='M3', type='printer',code=3, model='model3', color='Y', printerType='Laser', price=199.99)
+        pc = PcProduct(marker='M1', type='pc', code=1, model='pc-model', speed=2000, ram=8, hd=512, cd='DVD', price=899.99)
+        laptop = LaptopProduct(marker='M2', type='laptop',code=2, model='laptop-model', speed=2500, ram=16, hd=1024, price=1299.99, screen=15)
+        printer = PrinterProduct(marker='M3', type='printer',code=3, model='printer-model', color='Y', printer_type='Laser', price=199.99)
 
         session.add_all([pc, laptop, printer])
         session.commit()
