@@ -1,7 +1,8 @@
 from sqlalchemy import Integer, ForeignKey, String, Float
-from sqlalchemy.orm import relationship
-from models.base import Base, Column
-class Pc(Base):
+from models.base import Column
+from models.product import Product
+
+class PcProduct(Product):
     __tablename__ = "pc"
 
     code = Column(Integer, primary_key=True)
@@ -12,4 +13,6 @@ class Pc(Base):
     cd = Column(String(length=10))
     price = Column(Float(precision=2), nullable=True)
 
-    product = relationship("Product", back_populates="pc")
+    __mapper_args__ = {
+        'polymorphic_identity': 'pc',
+    }

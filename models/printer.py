@@ -1,14 +1,16 @@
 from sqlalchemy import Integer, ForeignKey, String, Float
-from sqlalchemy.orm import relationship
-from models.base import Base, Column
+from models.base import Column
+from models.product import Product
 
-class Printer(Base):
+class PrinterProduct(Product):
     __tablename__ = "printer"
     
     code = Column(Integer, primary_key=True)
     model = Column(String(length=50), ForeignKey('product.model'), index=True)
     color = Column(String(length=1))
-    type = Column(String(length=10))
+    printerType = Column(String(length=10))
     price = Column(Float(precision=2), nullable=True)
 
-    product = relationship("Product", back_populates="printer")
+    __mapper_args__ = {
+        'polymorphic_identity': 'printer',
+    }
