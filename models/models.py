@@ -1,5 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column as BaseColumn, Integer, String, ForeignKey, Float
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -15,6 +16,10 @@ class Product(Base):
     model = Column(String(length=50), primary_key=True, index=True)
     type = Column(String(length=50))
 
+    pc = relationship("Pc", uselist=False, back_populates="product")
+    laptop = relationship("Laptop", uselist=False, back_populates="product")
+    printer = relationship("Printer", uselist=False, back_populates="product")
+
 class Pc(Base):
     __tablename__ = "pc"
 
@@ -25,6 +30,8 @@ class Pc(Base):
     hd = Column(Integer)
     cd = Column(String(length=10))
     price = Column(Float(precision=2), nullable=True)
+
+    product = relationship("Product", back_populates="pc")
 
 class Laptop(Base):
     __tablename__ = "laptop"
@@ -37,6 +44,8 @@ class Laptop(Base):
     price = Column(Float(precision=2), nullable=True)
     screen = Column(Integer)
 
+    product = relationship("Product", back_populates="laptop")
+
 class Printer(Base):
     __tablename__ = "printer"
     
@@ -45,3 +54,5 @@ class Printer(Base):
     color = Column(String(length=1))
     type = Column(String(length=10))
     price = Column(Float(precision=2), nullable=True)
+
+    product = relationship("Product", back_populates="printer")

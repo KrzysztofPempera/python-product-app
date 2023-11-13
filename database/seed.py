@@ -10,16 +10,16 @@ def seed_database():
     session = Session()
 
     try:
-        product1 = Product(marker='M1', model='model1', type='Type1')
-        product2 = Product(marker='M2', model='model2', type='Type2')
-        product3 = Product(marker='M3', model='model3', type='Type3')
+        product1 = Product(marker='M1', model='model1', type='pc')
+        product2 = Product(marker='M2', model='model2', type='laptop')
+        product3 = Product(marker='M3', model='model3', type='printer')
 
         session.add_all([product1, product2, product3])
         session.commit()
 
-        pc = Pc(code=1, model='1', speed=2000, ram=8, hd=512, cd='DVD', price=899.99)
-        laptop = Laptop(code=2, model='2', speed=2500, ram=16, hd=1024, price=1299.99, screen=15)
-        printer = Printer(code=3, model='3', color='Y', type='Laser', price=199.99)
+        pc = Pc(code=1, model='model1', speed=2000, ram=8, hd=512, cd='DVD', price=899.99)
+        laptop = Laptop(code=2, model='model2', speed=2500, ram=16, hd=1024, price=1299.99, screen=15)
+        printer = Printer(code=3, model='model3', color='Y', type='Laser', price=199.99)
 
         session.add_all([pc, laptop, printer])
         session.commit()
