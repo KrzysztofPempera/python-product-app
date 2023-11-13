@@ -1,9 +1,15 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models.models import Base, Product, Printer, Pc, Laptop
+from models.base import Base
+from models.product import Product
+from models.printer import Printer
+from models.pc import Pc
+from models.laptop import Laptop
 
 def seed_database():
     engine = create_engine('sqlite:///inpost.db', echo=True)
+
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
