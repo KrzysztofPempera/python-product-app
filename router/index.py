@@ -20,4 +20,4 @@ async def calculate_index(model: Annotated[str, Query(max_length=50)], db: Sessi
     try:
         return StreamingResponse(iter([csv_data.getvalue()]), media_type="text/csv")
     except FileNotFoundError:
-        return {"error": "File not found"}
+        return {"error": "Could not create file"}
