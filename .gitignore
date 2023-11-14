@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 *.db
+launch.json
+*.csv
+settings.json
