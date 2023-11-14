@@ -10,4 +10,12 @@ def get_product_by_model(db: Session, model: str):
 
     return product
 
+def get_product_by_type(db: Session, type: str):
+    product = db.query(Product).filter_by(type=type).first()
+
+    if not product:
+        raise HTTPException(status_code=404, detail=f"Product with type {type} not found")
+
+    return product
+
             
