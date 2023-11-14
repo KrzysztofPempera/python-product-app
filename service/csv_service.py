@@ -5,9 +5,9 @@ def create_index_csv(product, index):
     csv_data = io.StringIO()
     csv_writer = csv.writer(csv_data)
     
-    csv_writer.writerow(['TYPE','PROFITABILITY_INDEX'])
+    csv_writer.writerow(['TYPE','PROFITABILITY_INDEX','MODEL'])
 
-    csv_writer.writerow([product.type]+ [index])
+    csv_writer.writerow([product.type] + [index] + [product.model])
 
     return csv_data
     
