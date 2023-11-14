@@ -7,7 +7,7 @@ from database.connection import get_db
 router = APIRouter()
 
 @router.get("/deal")
-def create_deals(db: Session = Depends(get_db)):
+async def create_deals(db: Session = Depends(get_db)):
     pc_product = get_product_by_type(db=db, type='pc')
     laptop_product = get_product_by_type(db=db, type='laptop')
     printer_product = get_product_by_type(db=db, type='printer')
