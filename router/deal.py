@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from fastapi.responses import FileResponse
+from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 from service.csv_service import create_deal_csv
 from repository.product import get_random_product_by_type
@@ -13,10 +13,12 @@ async def create_deals(db: Session = Depends(get_db)):
     laptop_product = get_random_product_by_type(db=db, type='laptop')
     printer_product = get_random_product_by_type(db=db, type='printer')
     
-    create_deal_csv(product1=pc_product, product2=printer_product)
-    create_deal_csv(product1=laptop_product, product2=printer_product)
+    csv_data = create_deal_csv(product1=pc_product, product2=printer_product)
+    csv_data = create_deal_csv(product1=laptop_product, product2=printer_product, csv_data=csv_data)
+
+    csv_data.seek(0)
 
     try:
-        return FileResponse('deal.csv', filename='deals.csv', media_type="text/csv")
+        return StreamingResponse(iter([csv_data.getvalue()]), media_type="text/csv")
     except FileNotFoundError:
-        return {"error": "File not found"}
+        return {"error": "Could not create file"}
