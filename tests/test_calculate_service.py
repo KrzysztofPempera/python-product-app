@@ -45,7 +45,7 @@ def test_calculate_profitability_index_with_printer_product_throws_exception():
     #Arrange
     product = PcProduct(ram=8, hd=512, price=0, speed=3, type='printer')
     expected_exception_code = 400
-    expected_exception_detail = "Cannot calculate profitability index of products other than pc and laptop"
+    expected_exception_detail = "Cannot calculate profitability index of products other than pc or laptop"
 
     #Act
     with pytest.raises(HTTPException) as exc_info:
