@@ -6,7 +6,7 @@ from models.pc import PcProduct
 from models.laptop import LaptopProduct
 
 def seed_database():
-    engine = create_engine('sqlite:///inpost.db', echo=True)
+    engine = create_engine('sqlite:///inpost.db')
 
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
