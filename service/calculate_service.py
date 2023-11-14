@@ -1,7 +1,9 @@
 from fastapi import HTTPException
+from models.pc import PcProduct
+from models.laptop import LaptopProduct
 
 def calculate_profitability_index(product):
-    if product.type != 'pc' and product.type != 'laptop':
+    if type(product) != PcProduct and type(product) != LaptopProduct:
          raise HTTPException(status_code=400, detail="Cannot calculate profitability index of products other than pc or laptop")
 
     if product.price == 0:

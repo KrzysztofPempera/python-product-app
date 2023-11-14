@@ -2,6 +2,7 @@ import pytest
 from fastapi import HTTPException
 from models.pc import PcProduct
 from models.laptop import LaptopProduct
+from models.printer import PrinterProduct
 from service.calculate_service import calculate_profitability_index
 
 
@@ -43,7 +44,7 @@ def test_calculate_profitability_index_with_price_zero_throws_exception():
 
 def test_calculate_profitability_index_with_printer_product_throws_exception():
     #Arrange
-    product = PcProduct(ram=8, hd=512, price=0, speed=3, type='printer')
+    product = PrinterProduct(color='blue', price=0, printer_type='laser')
     expected_exception_code = 400
     expected_exception_detail = "Cannot calculate profitability index of products other than pc or laptop"
 
