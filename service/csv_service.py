@@ -2,13 +2,15 @@ import csv
 import io
 
 def create_index_csv(product, index):
-    with open('index.csv', 'a', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        
-        if csvfile.tell() == 0:
-            csv_writer.writerow(['type','profitability_index'])
+    csv_data = io.StringIO()
+    csv_writer = csv.writer(csv_data)
+    
+    csv_writer.writerow(['TYPE','PROFITABILITY_INDEX'])
 
-        csv_writer.writerow([product.type]+ [index])
+    csv_writer.writerow([product.type]+ [index])
+
+    return csv_data
+    
 
 def create_deal_csv(product1, product2, csv_data=None):
     if csv_data == None:
