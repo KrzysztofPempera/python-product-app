@@ -16,6 +16,6 @@ async def calculate_index(model: Annotated[str, Query(max_length=50)], db: Sessi
     create_index_csv(product=product, index=index)
 
     try:
-        return FileResponse('index.csv', filename='profitability_indexes.csv')
+        return FileResponse('index.csv', filename='profitability_indexes.csv', media_type="text/csv")
     except FileNotFoundError:
         return {"error": "File not found"}

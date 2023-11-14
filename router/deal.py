@@ -17,6 +17,6 @@ async def create_deals(db: Session = Depends(get_db)):
     create_deal_csv(product1=laptop_product, product2=printer_product)
 
     try:
-        return FileResponse('deal.csv', filename='deals.csv')
+        return FileResponse('deal.csv', filename='deals.csv', media_type="text/csv")
     except FileNotFoundError:
         return {"error": "File not found"}
