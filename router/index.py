@@ -9,7 +9,7 @@ from typing import Annotated
 
 router = APIRouter()
 
-@router.get("/index/")
+@router.get("/index")
 async def calculate_index(model: Annotated[str, Query(max_length=50)], db: Session = Depends(get_db)):
     product = get_product_by_model(db=db, model=model)
     index = calculate_profitability_index(product=product)
