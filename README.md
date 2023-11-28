@@ -1,8 +1,8 @@
 # python-product-app
 
 ## Features
-* Api endpoint "deals" which creates csv with promotional data about two sets of products
-* Api endpoint "index" that identifies product's type based on the input model, calculates it's profitability index and returns that data as a csv
+* API endpoint "deals" which creates csv with promotional data about two sets of randomly selected products
+* API endpoint "index" that identifies product's type based on the input model, calculates it's profitability index and returns that data as a csv
 
 ## Requirements
 
